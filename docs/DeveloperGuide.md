@@ -289,9 +289,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                   | I want to …​              | So that I can…​                                           |
 |----------|---------------------------|---------------------------|-----------------------------------------------------------|
-| `* * *`  | CCA organizer/EXCO Member | assign roles to contacts  | manage my CCA personnel                                   |
-| `* * *`  | CCA member                | Identify the EXCO members | Inform them if I am unable to make it for the CCA session |
-| `* * *`  | CCA organizer/exco member | form groups of contacts   | associate who belongs to what CCA                         |
+| `* * *`  | `EXCO Member` | Assign roles to contacts  | manage my `CCA Member`s                                   |
+| `* * *`  | `CCA Member`                | Identify the `EXCO Member`s | Inform them if I am unable to make it for the CCA session |
+| `* * *`  | `EXCO Member` | Form groups of contacts   | associate who belongs to what CCA                         |
 |   |                           |                           |                                                           |
 |    |                       |                           |                                                           |
 |    |                           |                           |                                                           |
@@ -300,83 +300,79 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `CCA Manager` and the **Actor** are the `EXCO Members/CCA Organizers`, unless specified otherwise)
+(For all use cases below, the **System** is the `CCA Manager` and the **Actor** are the `EXCO Member`s and `CCA Member`s, unless specified otherwise)
 
-**Use cases:**
-
-UC01) Assign roles to contacts
+#### UC01 - Assign roles to contacts
 
 **MSS**
 
+```
 1.  User requests to list contacts
-2.  CCA Manager shows a list of contacts
+2.  `CCA Manager` shows a list of contacts
 3.  User requests to assign role to the contact
-4.  CCA Manager assigns role to that contact
-
-    Use case ends.
+4.  `CCA Manager` assigns role to that contact
+Use case ends.
+```
 
 **Extensions**
 
-* 2a. Provided Non-Integer Input for Index of  Contacts.
-  * 2a1. CCA Manager shows an error message.
-    
+```
+2a. Provided Non-Integer input for `Index of Contacts`.
+    2a1. `CCA Manager` shows an error message. 
     Use case resumes at step 2
 
-* 3a. Provided Integer that is out of range of index
-  * 3a1. CCA Manager shows an error message.
-
+3a. Provided Integer that is out of range of index
+    3a1. `CCA Manager` shows an error message.
     Use case resumes at step 2
 
-* 4a. Invalid Role Name
+4a. Invalid `Role Name`
+    Use case ends.
 
-  Use case ends.
-
-* 5a. Neglected to input r or c character prior to name
-  * 5a1. CCA Manager shows an error message.
-
+5a. Neglected to input `r` or `c` character prior to name
+    5a1. `CCA Manager` shows an error message.
     Use case resumes at step 2
+```
 
 
-UC02) Form groups of contacts
+#### UC02 - Form groups of contacts
 
 **MSS**
 
+```
 1.  User requests to list contacts
-2.  CCA Manager shows a list of contacts
+2.  `CCA Manager` shows a list of contacts
 3.  User requests to form a group for a list of contacts
-4.  CCA Manager forms a group for a list of contacts
-
-    Use case ends.
+4.  `CCA Manager` forms a group for a list of contacts
+Use case ends.
+```
 
 **Extensions**
 
-* 2a. Provided Non-Integer Input for Index of  Contacts.
-    * 2a1. CCA Manager shows an error message.
+```
+2a. Provided Non-Integer input for `Index of Contacts`.
+    2a1. `CCA Manager` shows an error message.
+    Use case resumes at step 2
 
-      Use case resumes at step 2
+3a. Provided Integer that is out of range of index
+    3a1. `CCA Manager` shows an error message.
+    Use case resumes at step 2
 
-* 3a. Provided Integer that is out of range of index
-    * 3a1. CCA Manager shows an error message.
+4a. Invalid `Group Name`
+    Use case ends.
 
-      Use case resumes at step 2
+5a. Invalid `Index of Contacts`
+    Use case ends.
+```
 
-* 4a. Invalid Group Name
-
-  Use case ends.
-
-* 5a. Invalid Index of Contacts
-
-  Use case ends.
-
-
-UC03) Identify the EXCO members
+#### UC03 - Identify the EXCO members
 
 **MSS**
 
+```
 1.  User requests to view the contacts in the EXCO group
 2.  AddressBook shows a list of contacts in the EXCO group
-
-    Use case ends.
+Use case ends.
+```
 
 *{More to be added}*
 
