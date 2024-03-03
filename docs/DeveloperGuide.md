@@ -369,7 +369,7 @@ UC02) Form groups of contacts
   Use case ends.
 
 
-UC03 )Identify the EXCO members
+UC03) Identify the EXCO members
 
 **MSS**
 
