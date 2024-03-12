@@ -13,7 +13,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Ken Jin
 
-<img src="images/fidget-spinner.jpg" width="200px">
+<img src="images/fidget-spinner.png" width="200px">
 
 [[github](https://github.com/Fidget-Spinner/)]
 [[portfolio](team/fidget-spinner.md)]
@@ -44,13 +44,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Jia Jie
 
-<img src="images/chuahjiajie.jpg" width="200px">
+<img src="images/chuahjiajie.png" width="200px">
 
 [[github](http://github.com/chuahjiajie)]
 [[portfolio](team/chuahjiajie.md)]
 
 * Role: Developer
-* Responsibilities: Logic
+* Responsibilities: 
+  * Logic
+  * Deliverables and Deadlines
 
 ### Jae Geun
 
