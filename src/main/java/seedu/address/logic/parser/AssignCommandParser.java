@@ -1,20 +1,28 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AssignCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.AssignCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new AssignCommand Object
+ */
 public class AssignCommandParser implements Parser<AssignCommand> {
+    /**
+     * Parses the given {@code String} of arguments in the context of the AssignCommand
+     * and returns an AssignCommand object for execution.
+     * @throws ParseException  if the user input does not conform the expected format
+     */
     @Override
     public AssignCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -43,6 +51,11 @@ public class AssignCommandParser implements Parser<AssignCommand> {
 
     }
 
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
     private Optional<Set<Tag>> parseRolesForAssign(Collection<String> tags) throws ParseException {
         assert tags != null;
 

@@ -1,5 +1,15 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
@@ -13,17 +23,10 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-public class AssignCommand extends Command{
+/**
+ * Assigns role to the existing person in the CCA Manager
+ */
+public class AssignCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
 
@@ -42,6 +45,10 @@ public class AssignCommand extends Command{
     private final Index index;
     private final AssignCommand.AssignPersonDescriptor assignPersonDescriptor;
 
+    /**
+     * @param index of the person to assign
+     * @param assignPersonDescriptor details of the role to assign the person with
+     */
     public AssignCommand(Index index, AssignCommand.AssignPersonDescriptor assignPersonDescriptor) {
         requireNonNull(index);
         requireNonNull(assignPersonDescriptor);
@@ -49,6 +56,7 @@ public class AssignCommand extends Command{
         this.index = index;
         this.assignPersonDescriptor = new AssignCommand.AssignPersonDescriptor(assignPersonDescriptor);
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -70,6 +78,12 @@ public class AssignCommand extends Command{
         return new CommandResult(String.format(MESSAGE_ASSIGN_PERSON_SUCCESS, Messages.format(assignedPerson)));
     }
 
+    /**
+     * Creates and returns an assigned person with details of the role
+     * @param personToAssign person who will be assigned
+     * @param assignPersonDescriptor details of the role to assign the person with
+     * @return Person who is assigned with a role
+     */
     private static Person createAssignedPerson(Person personToAssign, AssignCommand.AssignPersonDescriptor assignPersonDescriptor) {
         assert personToAssign != null;
 
@@ -82,6 +96,9 @@ public class AssignCommand extends Command{
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
+    /**
+     * Stores the details of the role to assign the person with.
+     */
     public static class AssignPersonDescriptor {
         private Set<Tag> role;
 
@@ -96,7 +113,7 @@ public class AssignCommand extends Command{
         }
 
         /**
-         * Returns true if at least one field is edited.
+         * Returns true if at least all fields are edited.
          */
         public boolean isAnyFieldNotEdited() {
             return CollectionUtil.isNotNull(role);
