@@ -84,7 +84,8 @@ public class AssignCommand extends Command {
      * @param assignPersonDescriptor details of the role to assign the person with
      * @return Person who is assigned with a role
      */
-    private static Person createAssignedPerson(Person personToAssign, AssignCommand.AssignPersonDescriptor assignPersonDescriptor) {
+    private static Person createAssignedPerson(Person personToAssign,
+                                               AssignCommand.AssignPersonDescriptor assignPersonDescriptor) {
         assert personToAssign != null;
 
         Name updatedName = personToAssign.getName();
