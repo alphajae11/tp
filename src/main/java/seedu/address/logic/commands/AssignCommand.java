@@ -6,13 +6,21 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 public class AssignCommand extends Command{
@@ -51,15 +59,15 @@ public class AssignCommand extends Command{
         }
 
         Person personToAssign = lastShownList.get(index.getZeroBased());
-        Person AssignedPerson = createAssignedPerson(personToAssign, assignPersonDescriptor);
+        Person assignedPerson = createAssignedPerson(personToAssign, assignPersonDescriptor);
 
-        if (!personToAssign.isSamePerson(AssignedPerson) && model.hasPerson(AssignedPerson)) {
+        if (!personToAssign.isSamePerson(assignedPerson) && model.hasPerson(assignedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToAssign, AssignedPerson);
+        model.setPerson(personToAssign, assignedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ASSIGN_PERSON_SUCCESS, Messages.format(AssignedPerson)));
+        return new CommandResult(String.format(MESSAGE_ASSIGN_PERSON_SUCCESS, Messages.format(assignedPerson)));
     }
 
     private static Person createAssignedPerson(Person personToAssign, AssignCommand.AssignPersonDescriptor assignPersonDescriptor) {
