@@ -16,6 +16,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -92,9 +93,10 @@ public class AssignCommand extends Command {
         Phone updatedPhone = personToAssign.getPhone();
         Email updatedEmail = personToAssign.getEmail();
         Address updatedAddress = personToAssign.getAddress();
+        Set<Cca> updatedCcas = personToAssign.getCcas();
         Set<Tag> updatedTags = assignPersonDescriptor.getRole().orElse(personToAssign.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedCcas);
     }
 
     /**
