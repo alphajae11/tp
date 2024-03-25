@@ -98,6 +98,8 @@ To get started with CCA Manager and explore its features further, check out our 
 To execute the command correctly, you should follow below general format of the command.
 You should ensure that your command follow the correct order shown below:
 
+For example:
+
 `<action> <primary-argument> /<argument-name> <argument-value>`
 
 * `add n/Brian p/87601212 e/test@gmail.com`
