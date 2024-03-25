@@ -4,49 +4,82 @@
   pageNav: 3
 ---
 
-# CCA Manager User Guide ℹ️
+# CCA Manager User Guide
 
-CCA Manager is a **desktop app for managing contacts, optimized for use via a  Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CCA Manager can get your contact management tasks done faster than traditional GUI apps.
+<!--
+- Clear and engaging introduction or welcome note that sets the tone for the UG.
+- What this User Guide aims to achieve
+- What this software is about
+    - Clear and engaging introduction or welcome note that sets the tone for the UG. 
+    - Identifies the target user or audience and makes appropriate assumptions, such as the level of relatedness, comprehension, and prior knowledge. 
+-->
+Welcome to CCA Manager's User Guide! CCA Manager is a **contact manager designed to simplify the management of CCAs and enhance your administrative efficiency**, regardless of whether you're overseeing a sports team, academic club, any other extracurricular activity, or simply a CCA participant. It has a minimal and intuitive GUI where most actions are performed via commands, making it a pleasure to use. If you can type fast, CCA Manager can get your admin tracking done faster than traditional GUI apps.
+
+In this user guide, we'll walk you through the essential steps to harness the full potential of CCA Manager. Whether you're a CCA Executive Committee Member or simply a CCA participant, our guide will provide you with the knowledge and tools you need to make the most of our app.
+ 
+This user guide does not assume any prior experience with administrative tools or command interfaces and is accessible for beginners and self-contained. However, if you've used command interfaces such as those from Telegram, you might find this guide easier to follow. If you have further questions while reading this document or while using our app, visit our [FAQ](#faq). If your question isn't answered there, feel free to visit our [project repository](https://github.com/AY2324S2-CS2103T-W11-2/tp/issues) and raise an issue.
+
+This user guide is split into 4 parts: An introduction to what CCA Manager offers, a section to set up our app, a beginner-friendly tutorial that introduces CCA Manager through a practical use case, and a comprehensive reference that explains all of CCA Manager's concepts and features. Feel free to navigate this guide via the sidebar on the right.
+
 
 <!-- * Table of Contents -->
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start 😊
+## Introduction
 
-> [!important]
-> 1. Ensure you have Java `11` or above installed in your Computer.
+<!--
+1. Introduction
+    - Problem we're trying to solve
+    - How the software solves the problem
+        - User-centric statement detailing product information, including product description and an overview of main features. 
+    - Links to basic tutorials (concrete use cases)
+-->
 
-<box type="info" seamless>
+Managing contact information and roles for members of CCAs can be a cumbersome task, often involving disparate tools and platforms. Administrators face challenges in efficiently organizing members, coordinating activities, and communicating effectively within these groups.
 
-**Notes about how to use:**<br>
+For instance, the management of contact information and associated information about a CCA activity often involves the use of the following apps: Discord, Telegram, Google Spreadsheets, Sessionize, etc. This makes maintaining administrative information messy, often involving several steps to accomplish a simple task. 
 
-* 1. Download the latest `<TODO>.jar` from [here](https://github.com/AY2324S2-CS2103T-W11-2/tp/releases).
+CCA Manager endeavors to equip CCAs with tools that streamline administration, freeing up valuable time for more meaningful tasks. We do so by providing a unified solution in the form of the following core features:
 
-* 2. Copy the file to the folder you want to use as the _home folder_ for your CCA Manager.
+1. **Centralized CCA Membership Management**: Easily associate members with their respective CCAs within one app, eliminating the need for multiple platforms.
+2. **Efficient Group Actions**: Perform actions on groups of CCA members, such as searching for multiple CCAs at once, and streamlining administrative tasks.
+3. **Role Assignment**: Assign roles to CCA members, enhancing organization and clarity within the group.
 
-* 3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar <TODO>.jar` command to run the application.<br>
+To get started with CCA Manager and explore its features further, check out our [Quick Start](#quick-start) and our [Tutorials](#TODO), where we'll go through some concrete use cases for our app.
+
+
+## Quick start
+
+**This quickstart guide targets an audience who has knowledge of how to install programs and how to use a command line/terminal.**
+
+1. Ensure you have Java `11` or above installed in your Computer. If you're wondering what
+   Java is, check out [this page](https://www.java.com/en/).
+
+1. Download the latest `ccamanager.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+
+1. Copy the file to the folder you want to use as the _home folder_ for your CCA Manager.
+
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ccamanager.jar` command to run the application.<br>
 
    ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png)
    **A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.**<br>
    
    ![Ui](images/Ui.png)
 
-### Quick Reference
-- Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window <br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
 
-   ▶️All commands you can try:
+   * `list` : Lists all contacts.
 
    * [`add` : Adds a contact/CCA group to the CCA Manager](#feature-add)
 
-   * [`list` : Lists all contacts](#feature-list)
+   * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * [`edit` : Edit a existing person information](#feature-edit)
-     
-   * [`find` : Find a person in the current list](#feature-find)
+   * `clear` : Deletes all contacts.
 
-   * [`delete` : Delete a contact in the current list](#feature-delete)
+   * `exit` : Exits the app.
 
    * [`clear` : Deletes all contacts](#feature-clear)
  
@@ -68,49 +101,39 @@ CCA Manager is a **desktop app for managing contacts, optimized for use via a  L
 <box type="info" seamless>
 
 **Notes about the command format:**<br>
-> [!NOTE]
-> 1. Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
->
->    For example, `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
->
->
-> 2. Items in square brackets are optional.<br>
->
->    For example, `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
->
->
-> 3. Items with `…`​ after them can be used multiple times including zero times.<br>
->
->    For example, `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
->
->
-> 4. Parameters can be in any order.<br>
->
->    For example, if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
->
->
-> 5. Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
->
->    For example, if the command specifies `help 123`, it will be interpreted as `help`.
 
-**If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.**
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
+* Items in square brackets are optional.<br>
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
 ### Viewing help : `help`
 
-_Shows a message explaning how to access the help page._
+Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-**Format**: `help`
+Format: `help`
 
 
-###  <span id='feature-add'> Adding a person: `add` </span>
+### Adding a person: `add`
 
-_Adds a person to the CCA Manager._
+Adds a person to the CCA Manager.
 
-**Format**: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 _Adds a CCA group to the CCA manager._
 
@@ -118,30 +141,25 @@ _Adds a CCA group to the CCA manager._
 
 
 <box type="tip" seamless>
-  
-> [!TIP]
-> A person can have any number of tags (including 0)
+
+**Tip:** A person can have any number of tags (including 0)
 </box>
 
-**Examples**:
+Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-**[Images with example is TBD]**
+### Listing all persons : `list`
 
-### <span id='feature-list'> Listing all persons : `list` </span>
+Shows a list of all persons in the CCA Manager.
 
-_Shows a list of all persons in the CCA Manager._
+Format: `list`
 
-**Format**: `list`
+### Editing a person : `edit`
 
-**[Images with example is TBD]**
+Edits an existing person in the CCA Manager.
 
-### <span id='feature-edit'> Editing a person : `edit` </span>
-
-_Edits an existing person in the CCA Manager._
-
-**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -150,17 +168,17 @@ _Edits an existing person in the CCA Manager._
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
 
-**Examples**:
+Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
   
 **[Images with example is TBD]**
 
-### <span id='feature-find'> Locating persons by name: `find` </span>
+### Locating persons by name: `find`
 
-_Finds persons whose names contain any of the given keywords._
+Finds persons whose names contain any of the given keywords.
 
-**Format**: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -169,16 +187,16 @@ _Finds persons whose names contain any of the given keywords._
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-**Examples**:
+Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### <span id='feature-delete'> Deleting a person : `delete` </span>
+### Deleting a person : `delete`
 
-_Deletes the specified person from the CCA Manager._
+Deletes the specified person from the CCA Manager.
 
-**Format**: `delete INDEX`
+Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -188,37 +206,17 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the CCA Manager.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-**[Images with example is TBD]**
+### Clearing all entries : `clear`
 
-### <span id='feature-clear'> Clearing all entries : `clear` </span>
+Clears all entries from the CCA Manager.
 
-_Clears all entries from the CCA Manager._
+Format: `clear`
 
-**Format**: `clear`
+### Exiting the program : `exit`
 
-### <span id='feature-filter'> Filter by tags : `filter` </span>
+Exits the program.
 
-_Filter people with existing tags._
-
-**Format**: `filter Tags`
-
-**[Images with example is TBD]**
-
-### <span id='feature-assign'> assign roles to contact: `assign` </span>
-
-_Assign roles to contact._
-
-**Format**: `assign INDEX r/ ROLE`
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-**[Images with example is TBD]**
-
-### <span id='feature-exit'> Exiting the program : `exit` </span>
-
-_Exits the program._
-
-**Format**: `exit`
+Format: `exit`
 
 ### Saving the data
 
@@ -230,10 +228,14 @@ CCA Manager data are saved automatically as a JSON file `[JAR file location]/dat
 
 <box type="warning" seamless>
 
->[!CAUTION]
-> If your changes to the data file makes its format invalid, CCA Manager will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
+**Caution:**
+If your changes to the data file makes its format invalid, CCA Manager will discard all data and start with an empty data file at the next run.  Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the CCA Manager to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
+
+### Archiving data files `[coming in v2.0]`
+
+_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -260,6 +262,6 @@ Action     | Format, Examples
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
-**Filter** | `filter Tags` e.g. `filter friends`
+**Filter** | `filter CCA1, CCA2, ...` e.g. `filter NUS Cycling`
 **Assign** | `Assign INDEX /r ROLE` e.g. `Assign 2 /r Member`
 **Help**   | `help`
