@@ -22,7 +22,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.roles.Role;
 
 /**
  * Assigns role to the existing person in the CCA Manager
@@ -94,22 +94,22 @@ public class AssignCommand extends Command {
         Email updatedEmail = personToAssign.getEmail();
         Address updatedAddress = personToAssign.getAddress();
         Set<Cca> updatedCcas = personToAssign.getCcas();
-        Set<Tag> updatedTags = assignPersonDescriptor.getRole().orElse(personToAssign.getTags());
+        Set<Role> updatedRoles = assignPersonDescriptor.getRole().orElse(personToAssign.getRoles());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedCcas);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRoles, updatedCcas);
     }
 
     /**
      * Stores the details of the role to assign the person with.
      */
     public static class AssignPersonDescriptor {
-        private Set<Tag> role;
+        private Set<Role> role;
 
         public AssignPersonDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code roles} is used internally.
          */
         public AssignPersonDescriptor(AssignCommand.AssignPersonDescriptor toCopy) {
             setRole(toCopy.role);
@@ -122,11 +122,11 @@ public class AssignCommand extends Command {
             return CollectionUtil.isNotNull(role);
         }
 
-        public void setRole(Set<Tag> role) {
+        public void setRole(Set<Role> role) {
             this.role = role;
         }
 
-        public Optional<Set<Tag>> getRole() {
+        public Optional<Set<Role>> getRole() {
             return (role != null) ? Optional.of(Collections.unmodifiableSet(role)) : Optional.empty();
         }
 

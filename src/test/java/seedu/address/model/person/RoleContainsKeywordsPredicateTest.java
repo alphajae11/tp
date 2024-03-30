@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.cca.Cca;
 import seedu.address.testutil.PersonBuilder;
 
-public class TagContainsKeywordsPredicateTest {
+public class RoleContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
@@ -67,7 +67,7 @@ public class TagContainsKeywordsPredicateTest {
 
         // Non-matching keyword
         predicate = new CcaContainsKeywordPredicate(Arrays.asList("Friends"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").withTags("Friend").build()));
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").withRoles("Friend").build()));
 
     }
 

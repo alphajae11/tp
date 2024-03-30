@@ -19,15 +19,19 @@ In this user guide, we'll walk you through the essential steps to harness the fu
  
 This user guide does not assume any prior experience with administrative tools or command interfaces and is accessible for beginners and self-contained. However, if you've used command interfaces such as those from Telegram, you might find this guide easier to follow. If you have further questions while reading this document or while using our app, visit our [FAQ](#faq). If your question isn't answered there, feel free to visit our [project repository](https://github.com/AY2324S2-CS2103T-W11-2/tp/issues) and raise an issue.
 
-This user guide is split into 4 parts: An introduction to what CCA Manager offers, a section to set up our app, a beginner-friendly tutorial that introduces CCA Manager through a practical use case, and a comprehensive reference that explains all of CCA Manager's concepts and features. Feel free to navigate this guide via the sidebar on the right.
+This user guide is split into 4 parts: 
+1. An introduction to what CCA Manager offers,
+2. A section to set up our app, 
+3. Beginner-friendly tutorials that introduce CCA Manager through a practical use case, and 
+4. A comprehensive reference that explains all of CCA Manager's concepts and features. Feel free to navigate this guide via the sidebar on the right.
 
 
 <!-- * Table of Contents -->
-<page-nav-print />
+<page-nav-print><h2>Table of Contents</h2></page-nav-print>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction
+## Product Introduction
 
 <!--
 1. Introduction
@@ -47,60 +51,113 @@ CCA Manager endeavors to equip CCAs with tools that streamline administration, f
 2. **Efficient Group Actions**: Perform actions on groups of CCA members, such as searching for multiple CCAs at once, and streamlining administrative tasks.
 3. **Role Assignment**: Assign roles to CCA members, enhancing organization and clarity within the group.
 
-To get started with CCA Manager and explore its features further, check out our [Quick Start](#quick-start) and our [Tutorials](#TODO), where we'll go through some concrete use cases for our app.
+To get started with CCA Manager and explore its features further, check out our [Installation Guide](#installation-guide) and our [Tutorials](#tutorials), where we'll go through some concrete use cases for our app.
 
+## Installation Guide
 
-## Quick start
+**This Installation guide targets an audience who has knowledge of how to install programs and how to use a command line/terminal.**
 
-**This quickstart guide targets an audience who has knowledge of how to install programs and how to use a command line/terminal.**
+<!-- TODO: Make the above disclaimer redundant -->
 
-1. Ensure you have Java `11` or above installed in your Computer. If you're wondering what
-   Java is, check out [this page](https://www.java.com/en/).
+### Steps
+
+1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the latest `ccamanager.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your CCA Manager.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ccamanager.jar` command to run the application.<br>
+1. On **Linux** and **macOS**:
+   1. Open a command terminal.
+   1. Type `cd <folder>` into the terminal and press `enter`, where you replace `<folder>` with the path to the folder where you've placed `ccamanager.jar`. This navigates the terminal to the correct folder.
+   1. Type `java -jar ccamanager.jar` into the terminal and press `enter` to run the application. <br>
 
-   ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png)
-   **A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.**<br>
+1. On **Windows**:
+    1. Double click the `ccamanager.jar` file to run it.
+
+<!--TODO-->
+**A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.**<br>
    
-   ![Ui](images/Ui.png)
+![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all contacts.
-
-   * [`add` : Adds a contact/CCA group to the CCA Manager](#feature-add)
-
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-   * `clear` : Deletes all contacts.
-
-   * `exit` : Exits the app.
-
-   * [`clear` : Deletes all contacts](#feature-clear)
- 
-   * [`filter` : Filter by tags](#feature-filter)
- 
-   * [`assign` : Assign roles to contact](#feature-assign)
-
-   * [`exit` : Exits the app](#feature-exit)
-     
-   * $${\color{green}More \space features \space will \space be \space coming \space in \space future \space update}$$
-
-### Further Help
- Refer to the [Features](#features) below for details of each command.⬇️⬇️⬇️⬇️
+For more details on the commands, visit our [Tutorials](#tutorials) or refer to our [Reference](#reference) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Basics
+## Tutorials
 
 Confused on where to get started? Don’t fret, in this section we’ll outline how to use CCA Manager to its maximum effect with a few use case scenarios.
 
+First off, CCA Manager's interface consists of the following main components:
+
+<!-- TODO regen this image -->
+![CommandLine](images/CommandLine.png)
+
+1. **Command Box**: A small text box where you type the commands.
+3. **Output Box**: Displays any errors that might have occurred, or other information about the most recent command executed.
+2. **Results Box**: Displays the results of the command.
+
+
+All of CCA Manager's functionality is accessed via commands. This includes both adding and editing contacts, as well as accessing existing contacts.
+
+### Upon Booting Up
+
+When you first boot up the app, the app will contain some example contacts for you to get a feel of using CCA Manager's functionalities.
+
+To run a command, type the command in the **Command Box** and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.
+
+Here are some other example commands you can try:
+   * `list`: [Lists all contacts.](#listing-all-persons--list)
+   * `delete 3`: [Deletes the 3rd contact shown in the currently displayed list.](#deleting-a-person--delete)
+   * `exit`: [Exits the app.](#exiting-the-program--exit)
+   * `filter NUS Cycling`: [Filter contacts by CCA.](#filter-by-cca)
+   <!--* `add`: [Adds a contact/CCA group to the CCA Manager](#add-contacts-with-cca-labels)-->
+   <!--* `edit`: [Edit details of the contacts.](#edit-the-details-of-your-contacts)-->
+
+Now you can proceed to the tutorials for more information on the actual commands.
+
+### General Format of the Commands
+
+Before we start on the tutorials for each command, you should understand the command format of CCA Manager.
+
+All commands in CCA Manager follow the following format:
+
+```
+ACTION PRIMARY_VALUE ARGUMENT_NAME/ARGUMENT_VALUE
+```
+
+`ACTION`: The name of the action you want to perform
+<box type="info" seamless>
+
+- E.g., For the command `find jason`, `find` is the `ACTION`.
+</box>
+
+`PRIMARY_VALUE`: The value related to the action. 
+<box type="info" seamless>
+
+- This aids in specifying exactly what you want from the action.
+- E.g., For the command `find jason`, `jason` is the `PRIMARY_VALUE`.
+- Some commands might not have this field.
+</box>
+
+`ARGUMENT_NAME/ARGUMENT_VALUE`: The name and its associated value that's related to the command.
+<box type="info" seamless>
+
+- Some commands require the user to specify additional values. Each of these additional values has an `ARGUMENT_NAME` associated to it.
+- `ARGUMENT_NAME` is usually one character long.
+  - E.g., For the command `add n/Brian p/87601212 e/test@gmail.com`:
+    - `n` is the `ARGUMENT_NAME` of the `ARGUMENT_VALUE` `Brian`.
+    - `p` is the `ARGUMENT_NAME` of the `ARGUMENT_VALUE` `87601212`.
+    - `e` is the `ARGUMENT_NAME` of the `ARGUMENT_VALUE` `test@gmail.com`.
+- Some commands allow multiple `ARGUMENT_VALUE`s associated with the same `ARGUMENT_NAME`
+  - E.g., For the command `edit 2 r/Treasurer r/EXCO Member`
+      - The values `Treasurer` and `EXCO Member` are associated with the `ARGUMENT_NAME` `r`.
+</box>
+
+Now we can move on to some command commands. For a full list of commands available for CCA Manager, refer to our [Reference](#reference).
+
 ### Clear Contacts
-The first thing you’d probably want to do is to clear the sample data, as it is likely of no relevance to you.
+
+The first thing you'd probably want to do is to clear the sample data, as it is likely of no relevance to you.
 
 You can do so using the clear command as follows:
 
@@ -111,6 +168,7 @@ And just like that, the address book will be cleared:
   ![clear output](images/UG-Basics/clear-output.png)
 
 ### Add Contacts with CCA Labels
+
 Now that you have a clean address book in CCA Manager, you can start adding your own contacts. An example of the command can be seen below:
 
   ![add-command-1](images/UG-Basics/add-command-1.png)
@@ -170,7 +228,7 @@ Output:
 
   ![edit-output](images/UG-Basics/edit-output.png)
 
-### Delete
+### Delete a Contact
 Has a member quit the CCA completely. Don’t need to waste space in your address book and clutter it up. You can simply delete them from the address book with this simple command. 
 
 Let’s say Mary Jane at index 2 has quit NUS Origami. To remove her simply use the following command:
@@ -183,20 +241,20 @@ Output:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Reference
 
 <box type="info" seamless>
 
 **Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter that can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [r/ROLE]` can be used as `n/John Doe r/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[r/ROLE]…​` can be used as ` ` (i.e. 0 times), `r/friend`, `r/friend r/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -209,7 +267,7 @@ Output:
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -220,7 +278,7 @@ Format: `help`
 
 Adds a person to the CCA Manager.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/ROLE] [c/CCA]…​`
 
 _Adds a CCA group to the CCA manager._
 
@@ -229,12 +287,12 @@ _Adds a CCA group to the CCA manager._
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A person can have any number of roles and ccas (including 0)
 </box>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/Betsy Crowe r/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 r/criminal`
 
 ### Listing all persons : `list`
 
@@ -246,18 +304,18 @@ Format: `list`
 
 Edits an existing person in the CCA Manager.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/ROLE] [c/CCA]...`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing roles, the existing roles of the person will be removed i.e., the adding of roles is not cumulative.
+* You can remove all the person’s roles by typing `r/` without
+    specifying any roles after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower r/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing roles.
   
 **[Images with example is TBD]**
 
@@ -357,12 +415,12 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] c/CCA GROUP…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague c/CCA Cycling`
+**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/ROLE] [c/CCA]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/friend r/colleague c/CCA Cycling`
 **Clear**  | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/ROLE] [c/CCA]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List**   | `list`
 **Filter** | `filter CCA1, CCA2, ...` e.g. `filter NUS Cycling`
-**Assign** | `Assign INDEX /r ROLE` e.g. `Assign 2 /r Member`
+**Assign** | `assign INDEX r/ROLE` e.g. `assign 2 r/ Member` or `assign 2 r/Member`
 **Help**   | `help`

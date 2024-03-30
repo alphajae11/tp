@@ -12,14 +12,14 @@ public class CcaTest {
     }
 
     @Test
-    public void constructor_invalidTagName_throwsIllegalArgumentException() {
+    public void constructor_invalidCcaName_throwsIllegalArgumentException() {
         String invalidCcaName = "";
         assertThrows(IllegalArgumentException.class, () -> new Cca(invalidCcaName));
     }
 
     @Test
     public void isValidCcaName() {
-        // null tag name
+        // null cca name
         assertThrows(NullPointerException.class, () -> Cca.isValidCcaName(null));
     }
 

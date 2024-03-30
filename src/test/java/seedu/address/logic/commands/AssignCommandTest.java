@@ -30,7 +30,7 @@ public class AssignCommandTest {
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Person assignedPerson = personInList.withTags(VALID_ROLE_HEAD).build();
+        Person assignedPerson = personInList.withRoles(VALID_ROLE_HEAD).build();
         AssignCommand.AssignPersonDescriptor descriptor = new AssignPersonDescriptorBuilder(VALID_ROLE_HEAD).build();
         AssignCommand assignCommand = new AssignCommand(indexLastPerson, descriptor);
 

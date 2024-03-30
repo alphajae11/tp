@@ -16,9 +16,9 @@ public class Cca {
     public final String ccaName;
 
     /**
-     * Constructs a {@code Tag}.
+     * Constructs a {@code Cca}.
      *
-     * @param CCAName A valid tag name.
+     * @param CCAName A valid CCA name.
      */
     public Cca(String ccaName) {
         requireNonNull(ccaName);
@@ -27,7 +27,7 @@ public class Cca {
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns true if a given string is a valid Cca name.
      */
     public static boolean isValidCcaName(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -44,8 +44,8 @@ public class Cca {
             return false;
         }
 
-        Cca otherTag = (Cca) other;
-        return ccaName.equals(otherTag.ccaName);
+        Cca otherCca = (Cca) other;
+        return ccaName.equals(otherCca.ccaName);
     }
 
     @Override

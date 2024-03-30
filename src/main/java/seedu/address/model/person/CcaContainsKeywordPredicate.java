@@ -10,13 +10,13 @@ import seedu.address.model.cca.Cca;
 
 
 /**
- * Tests that a {@code Person}'s {@code tags} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Cca} matches any of the keywords given.
  */
 public class CcaContainsKeywordPredicate implements Predicate<Person> {
     private final List<Cca> ccas;
 
     /**
-     * Returns a TagContainsKeywordsPredicate object by taking a list of the tag names.
+     * Returns a CcaContainsKeywordsPredicate object by taking a list of the Cca names.
      */
     public CcaContainsKeywordPredicate(List<String> keywords) {
 

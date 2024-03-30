@@ -34,7 +34,7 @@ class JsonAdaptedCca {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code CCA} object.
+     * Converts this Jackson-friendly adapted Cca object into the model's {@code CCA} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted CCA.
      */

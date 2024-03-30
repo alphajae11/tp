@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AssignCommand;
 import seedu.address.logic.commands.AssignCommand.AssignPersonDescriptor;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.roles.Role;
 
 /**
  * A utility class to help with building AssignPersonDescriptor objects.
@@ -28,8 +28,8 @@ public class AssignPersonDescriptorBuilder {
      */
     public AssignPersonDescriptorBuilder(String role) {
         descriptor = new AssignPersonDescriptor();
-        Set<Tag> tagSet = Stream.of(role).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setRole(tagSet);
+        Set<Role> roleSet = Stream.of(role).map(Role::new).collect(Collectors.toSet());
+        descriptor.setRole(roleSet);
     }
 
     public AssignCommand.AssignPersonDescriptor build() {

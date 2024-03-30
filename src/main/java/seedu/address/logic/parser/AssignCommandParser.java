@@ -12,7 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AssignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.roles.Role;
 
 /**
  * Parses input arguments and creates a new AssignCommand Object
@@ -52,17 +52,17 @@ public class AssignCommandParser implements Parser<AssignCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code Collection<String> roles} into a {@code Set<Role>} if {@code roles} is non-empty.
+     * If {@code roles} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Role>} containing zero roles.
      */
-    private Optional<Set<Tag>> parseRolesForAssign(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<Role>> parseRolesForAssign(Collection<String> roles) throws ParseException {
+        assert roles != null;
 
-        if (tags.isEmpty()) {
+        if (roles.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        Collection<String> roleSet = roles.size() == 1 && roles.contains("") ? Collections.emptySet() : roles;
+        return Optional.of(ParserUtil.parseRoles(roleSet));
     }
 }

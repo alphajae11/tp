@@ -87,7 +87,7 @@ public class FilterCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code TagContainsKeywordPredicate}.
+     * Parses {@code userInput} into a {@code CcaContainsKeywordPredicate}.
      */
     private CcaContainsKeywordPredicate preparePredicate(String userInput) {
         return new CcaContainsKeywordPredicate(Arrays.stream(userInput.split(","))

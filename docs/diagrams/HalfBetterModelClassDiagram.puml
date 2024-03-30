@@ -5,19 +5,16 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueRoleList
 AddressBook *-right-> "1" UniqueCcaList
-UniqueRoleList -[hidden]down- UniquePersonList
 
-UniqueRoleList -right-> "*" Role
 UniqueCcaList -right-> "*" Cca
 UniquePersonList -right-> Person
 
-Person -up-> "*" Role
 Person -up-> "*" Cca
 
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> "*" Role
 @enduml

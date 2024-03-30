@@ -130,7 +130,7 @@ The `Model` component,
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Role` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Role` object per unique role, instead of each `Person` needing their own `Role` objects.<br>
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
@@ -255,6 +255,113 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+
+### \[Proposed\] Payment splitting
+
+After payments are implemented, we expect to be able to split payments among
+CCA members. An example command is ``split a/4.00 c/NUS Cycling``. Which means
+"split $4.00 among CCA members NUS Cycling".  The process is as follows.
+
+1. Identify all members belonging to that CCA.
+2. Count the number of members in 1., and split the amount equally.
+   * Note: rounding errors may occur here. So we should use `double` in Java
+     for higher precision and also round to nearest 2 d.p.
+3. Add the split amount to each member's "payment owed" field
+   (this field has yet to be implemented).
+
+
+### \[Proposed\] Better CCA-level Actions
+
+This feature will implement a better internal representation of a `Cca` object. This enables the implementation of certain features such as:
+
+1. Adding meta-data to CCAs
+2. Displaying every contact related to CCAs in a concise manner.
+3. Allow more interactive ways to traverse contacts related to CCAs.
+   - E.g., `display CCA` can list every contact (summary) grouped according to roles. Each contact is clickable, which will modify the `ModelManager.filteredPersons` to only have said contact.
+
+This meta-feature will consist of two parts:
+
+1. A better `Model` representation.
+
+#### A better `Model` representation
+
+<puml src="diagrams/HalfBetterModelClassDiagram.puml" width="600" />
+
+The minimal `Model` changes required to implement this is the implementation of `UniqueCcaList` as per above. This represents a half-way point between the ideal `Model` implementation which involves `UniqueRoleList`.
+
+This allows `Cca` objects to contain metadata (such as `Cca.description: String`) that is automatically shared across all members within the `Cca`.
+
+Due to this fundamental change, implementation of this will be fairly invasive across the codebase, albeit straightforward. This includes (but might not be exhaustive):
+
+1. `model`:
+   - See above diagram.
+2. `logic`:
+   - `Command.execute` that use `Cca`s needs to interface with `ModelManager.UniqueCcaList` to create new `Cca`s as needed or to reuse the object in the list.
+3. `storage`:
+   - `JsonAdaptedCCA` needs to seralise any new fields in `Cca`.
+4. `test`:
+   - Tests similar to that of `UniquePersonList` has to be implemented.
+
+Following the implementation of this meta-feature, the following features can be implemented:
+
+1. Adding meta-data to CCAs. Possible implementation details:
+   1. Have the command format be `cca-desc DESC`.
+   2. The creation of a new `Command` class `CcaDescCommand`.
+   3. Implementing `Cca.setDesc`.
+   4. `CcaDescCommand.execute` will look for the correct `Cca` object in `UniqueCcaList` and call `Cca.setDesc(desc)`.
+
+More details of these specific features in the future.
+
+
+#### Modification of UI elements to display `Cca`s.
+
+This is fairly straightforward:
+
+1. Renaming of `PersonListPanel` to `DisplayObjectListPanel`.
+2. Renaming of `PersonListPanel.fxml` to `DisplayObjectListPanel.fxml`.
+3. Add a new `ListView` in `DisplayObjectListPanel.fxml` below `personListView` known as `ccaView`.
+    - Update `DisplayObjectListPanel` accordingly.
+4. Create a new `CcaCard` object in `ui` and its corresponding `CcaCard.fxml` file.
+5. Add a new overload `updateItem` with type signature `(Cca cca, boolean empty)` that appends a `CcaCard` object to `PersonListPanel.ccaView`.
+
+The resulting Ui model should look something like this:
+
+<puml src="diagrams/NewUiClassDiagram.puml" width="1000px"></puml>
+
+Following the implementation of this meta-feature, the following features can be implemented:
+
+1. Displaying every contact related to CCAs in a concise manner.
+    - This will depend on the implementation of `CcaCard`.
+2. Allow more interactive ways to traverse contacts related to CCAs.
+
+More details of these specific features in the future.
+
+
+### \[Proposed\] Attendance Tracking
+
+After members of a CCA has been added to CCA Manager, it is expected to be able to track
+their attendance. This will be displayed below their CCA.
+
+An example command for setting attendance is ``setatt n\John Doe a\9 s\10``. Which means
+"Set the attendance of John Doe to be 9 out of 10 sessions".  The process is as follows.
+
+1. Retrieve the attendance information of John Doe.
+2. Edit the attendance details according to the input.
+3. Update the attendance details of the person in the model.
+
+An example command for setting the number of sessions is ``setsess n\John Doe s\10``. Which means
+"Set the number of sessions of John Doe to be 10".  The process is as follows.
+
+1. Retrieve the attendance information of John Doe.
+2. Increment the attendance value by 1.
+3. Update the attendance details of the person in the model.
+
+An example command for incrementing attendance is ``incatt n\John Doe``. Which means
+"Increment the attendance of John Doe by 1".  The process is as follows.
+
+1. Retrieve the attendance information of John Doe.
+2. Edit the session detail according to the input.
+3. Update the attendance details of the person in the model.
 
 --------------------------------------------------------------------------------------------------------------------
 

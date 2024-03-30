@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.CcaContainsKeywordPredicate;
 
 /**
- * Filters all persons in address book by their tag (case-sensitive).
+ * Filters all persons in address book by their cca (case-sensitive).
  * Serves the purpose of grouping people together..
  */
 public class FilterCommand extends Command {

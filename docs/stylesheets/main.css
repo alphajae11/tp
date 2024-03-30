@@ -168,3 +168,45 @@ h5,
 h6 {
   color: #e46c0a;
 }
+
+p {
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.page-nav-print > nav > a  {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.page-nav-print > nav > a:after {
+    content: ": "
+}
+
+.page-nav-print > nav > nav {
+    margin: 2.5%;
+}
+
+.page-nav-print > nav > nav > a  {
+    font-weight: bold;
+}
+
+.page-nav-print > nav > nav > nav  {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.page-nav-print > nav > nav > nav > a {
+    align-self: flex-start;
+    padding-left: 0.3em;
+    padding-right: 0em;
+    flex-shrink: 3;
+    display: inline-block;
+}
+
+.page-nav-print > nav > nav > nav > a:not(:last-child):after {
+    content: " | ";
+    color: black;
+    font-weight: bold;
+}

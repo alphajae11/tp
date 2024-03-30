@@ -19,7 +19,7 @@ Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
+Class Role
 Class Cca
 
 Class I #FFFFFF
@@ -45,7 +45,7 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person *--> "*" Role
 Person *--> "*" Cca
 
 Person -[hidden]up--> I

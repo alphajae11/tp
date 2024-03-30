@@ -11,7 +11,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.roles.Role;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -37,7 +37,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setRoles(person.getRoles());
         descriptor.setCcas(person.getCcas());
     }
 
@@ -74,23 +74,23 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code roles} into a {@code Set<Role>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditPersonDescriptorBuilder withRoles(String... roles) {
+        Set<Role> roleSet = Stream.of(roles).map(Role::new).collect(Collectors.toSet());
+        descriptor.setRoles(roleSet);
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<CCA>} and
+     * Parses the {@code cca} into a {@code Set<CCA>} and
      * set it to the {@code EditPersonDescriptorBuilder}
-     * @param tags
+     * @param cca
      * @return
      */
-    public EditPersonDescriptorBuilder withCcas(String... tags) {
-        Set<Cca> ccaSet = Stream.of(tags).map(Cca::new).collect(Collectors.toSet());
+    public EditPersonDescriptorBuilder withCcas(String... cca) {
+        Set<Cca> ccaSet = Stream.of(cca).map(Cca::new).collect(Collectors.toSet());
         descriptor.setCcas(ccaSet);
         return this;
     }
