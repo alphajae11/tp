@@ -36,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/juliapoo.png" width="200px">
 
 [[homepage](https://juliapoo.github.io/)]
-[[github](http://github.com/JuliaPoo)] 
+[[github](http://github.com/JuliaPoo)]
 [[portfolio](team/juliapoo.md)]
 
 * Role: Developer
@@ -50,7 +50,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/chuahjiajie.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
   * Logic
   * Deliverables and Deadlines
 

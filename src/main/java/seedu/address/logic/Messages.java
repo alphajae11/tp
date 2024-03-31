@@ -47,6 +47,8 @@ public class Messages {
         person.getRoles().forEach(builder::append);
         builder.append("; CCA: ");
         person.getCcas().forEach(builder::append);
+        builder.append("; Amount: ")
+                .append(person.getAmount());
         return builder.toString();
     }
 

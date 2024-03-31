@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.amount.Amount;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -31,6 +32,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedRole> roles = new ArrayList<>();
     private final List<JsonAdaptedCca> ccas = new ArrayList<>();
+    private final JsonAdaptedAmount amount;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -38,7 +40,8 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("roles") List<JsonAdaptedRole> roles, @JsonProperty("CCAs") List<JsonAdaptedCca> ccas) {
+            @JsonProperty("roles") List<JsonAdaptedRole> roles, @JsonProperty("CCAs") List<JsonAdaptedCca> ccas,
+            @JsonProperty("amount") JsonAdaptedAmount amount) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,6 +52,7 @@ class JsonAdaptedPerson {
         if (ccas != null) {
             this.ccas.addAll(ccas);
         }
+        this.amount = amount;
     }
 
     /**
@@ -59,6 +63,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        amount = new JsonAdaptedAmount(source.getAmount());
         roles.addAll(source.getRoles().stream()
                 .map(JsonAdaptedRole::new)
                 .collect(Collectors.toList()));
@@ -113,11 +118,19 @@ class JsonAdaptedPerson {
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
 
+        if (amount == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Amount.class.getSimpleName()));
+        }
+        if (!Amount.isValidAmount(amount.getValue())) {
+            throw new IllegalValueException(Amount.MESSAGE_CONSTRAINTS);
+        }
+        final Amount modelAmount = amount.toModelType();
+        final Address modelAddress = new Address(address);
         final Set<Role> modelRoles = new HashSet<>(personRoles);
         final Set<Cca> modelCcas = new HashSet<>(personCcas);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRoles, modelCcas);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRoles, modelCcas, modelAmount);
     }
 
 }

@@ -10,19 +10,19 @@
 - Clear and engaging introduction or welcome note that sets the tone for the UG.
 - What this User Guide aims to achieve
 - What this software is about
-    - Clear and engaging introduction or welcome note that sets the tone for the UG. 
-    - Identifies the target user or audience and makes appropriate assumptions, such as the level of relatedness, comprehension, and prior knowledge. 
+    - Clear and engaging introduction or welcome note that sets the tone for the UG.
+    - Identifies the target user or audience and makes appropriate assumptions, such as the level of relatedness, comprehension, and prior knowledge.
 -->
 Welcome to CCA Manager's User Guide! CCA Manager is a **contact manager designed to simplify the management of CCAs and enhance your administrative efficiency**, regardless of whether you're overseeing a sports team, academic club, any other extracurricular activity, or simply a CCA participant. It has a minimal and intuitive GUI where most actions are performed via commands, making it a pleasure to use. If you can type fast, CCA Manager can get your admin tracking done faster than traditional GUI apps.
 
 In this user guide, we'll walk you through the essential steps to harness the full potential of CCA Manager. Whether you're a CCA Executive Committee Member or simply a CCA participant, our guide will provide you with the knowledge and tools you need to make the most of our app.
- 
+
 This user guide does not assume any prior experience with administrative tools or command interfaces and is accessible for beginners and self-contained. However, if you've used command interfaces such as those from Telegram, you might find this guide easier to follow. If you have further questions while reading this document or while using our app, visit our [FAQ](#faq). If your question isn't answered there, feel free to visit our [project repository](https://github.com/AY2324S2-CS2103T-W11-2/tp/issues) and raise an issue.
 
-This user guide is split into 4 parts: 
+This user guide is split into 4 parts:
 1. An introduction to what CCA Manager offers,
-2. A section to set up our app, 
-3. Beginner-friendly tutorials that introduce CCA Manager through a practical use case, and 
+2. A section to set up our app,
+3. Beginner-friendly tutorials that introduce CCA Manager through a practical use case, and
 4. A comprehensive reference that explains all of CCA Manager's concepts and features. Feel free to navigate this guide via the sidebar on the right.
 
 
@@ -37,13 +37,13 @@ This user guide is split into 4 parts:
 1. Introduction
     - Problem we're trying to solve
     - How the software solves the problem
-        - User-centric statement detailing product information, including product description and an overview of main features. 
+        - User-centric statement detailing product information, including product description and an overview of main features.
     - Links to basic tutorials (concrete use cases)
 -->
 
 Managing contact information and roles for members of CCAs can be a cumbersome task, often involving disparate tools and platforms. Administrators face challenges in efficiently organizing members, coordinating activities, and communicating effectively within these groups.
 
-For instance, the management of contact information and associated information about a CCA activity often involves the use of the following apps: Discord, Telegram, Google Spreadsheets, Sessionize, etc. This makes maintaining administrative information messy, often involving several steps to accomplish a simple task. 
+For instance, the management of contact information and associated information about a CCA activity often involves the use of the following apps: Discord, Telegram, Google Spreadsheets, Sessionize, etc. This makes maintaining administrative information messy, often involving several steps to accomplish a simple task.
 
 CCA Manager endeavors to equip CCAs with tools that streamline administration, freeing up valuable time for more meaningful tasks. We do so by providing a unified solution in the form of the following core features:
 
@@ -77,7 +77,7 @@ To get started with CCA Manager and explore its features further, check out our 
 
 <!--TODO-->
 **A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.**<br>
-   
+
 ![Ui](images/Ui.png)
 
 For more details on the commands, visit our [Tutorials](#tutorials) or refer to our [Reference](#reference) below for details of each command.
@@ -131,7 +131,7 @@ ACTION PRIMARY_VALUE ARGUMENT_NAME/ARGUMENT_VALUE
 - E.g., For the command `find jason`, `find` is the `ACTION`.
 </box>
 
-`PRIMARY_VALUE`: The value related to the action. 
+`PRIMARY_VALUE`: The value related to the action.
 <box type="info" seamless>
 
 - This aids in specifying exactly what you want from the action.
@@ -229,7 +229,7 @@ Output:
   ![edit-output](images/UG-Basics/edit-output.png)
 
 ### Delete a Contact
-Has a member quit the CCA completely. Don’t need to waste space in your address book and clutter it up. You can simply delete them from the address book with this simple command. 
+Has a member quit the CCA completely. Don’t need to waste space in your address book and clutter it up. You can simply delete them from the address book with this simple command.
 
 Let’s say Mary Jane at index 2 has quit NUS Origami. To remove her simply use the following command:
 
@@ -316,7 +316,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/ROLE] [c/CCA]...
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower r/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing roles.
-  
+
 **[Images with example is TBD]**
 
 ### Locating persons by name: `find`

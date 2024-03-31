@@ -42,6 +42,9 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane roles;
     @FXML
     private FlowPane ccas;
+    @FXML
+    private Label owe;
+
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -54,6 +57,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        owe.setText("Owe: " + "$" + person.getAmount().value);
         person.getRoles().stream()
                 .sorted(Comparator.comparing(role -> role.roleName))
                 .forEach(role -> roles.getChildren().add(new Label(role.roleName)));

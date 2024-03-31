@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.amount.Amount;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -21,6 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_AMOUNT = "0.0";
 
     private Name name;
     private Phone phone;
@@ -28,6 +30,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Role> roles;
     private Set<Cca> ccas;
+    private Amount amount;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -39,6 +42,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         roles = new HashSet<>();
         ccas = new HashSet<>();
+        amount = new Amount(DEFAULT_AMOUNT);
     }
 
     /**
@@ -51,6 +55,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         roles = new HashSet<>(personToCopy.getRoles());
         ccas = new HashSet<>(personToCopy.getCcas());
+        amount = personToCopy.getAmount();
     }
 
     /**
@@ -101,8 +106,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Amount} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAmount(String amount) {
+        this.amount = new Amount(amount);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, roles, ccas);
+        return new Person(name, phone, email, address, roles, ccas, amount);
     }
 
 }

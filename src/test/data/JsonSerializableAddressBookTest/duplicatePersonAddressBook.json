@@ -5,13 +5,19 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "roles": [ "friends" ],
-    "CCAs" : [ "NUS Cycling" ]
+    "CCAs" : [ "NUS Cycling" ],
+    "amount" : {
+      "value" : "0.0"
+    }
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
     "roles": [ ],
-    "CCAs" : [ "NUS Cycling" ]
+    "CCAs" : [ "NUS Cycling" ],
+    "amount" : {
+      "value" : "0.0"
+    }
   } ]
 }

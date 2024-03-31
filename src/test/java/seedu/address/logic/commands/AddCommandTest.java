@@ -158,7 +158,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
     }
-
     /**
      * A Model stub that contains a single person.
      */
@@ -200,5 +199,4 @@ public class AddCommandTest {
             return new AddressBook();
         }
     }
-
 }
