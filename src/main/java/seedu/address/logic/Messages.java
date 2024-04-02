@@ -49,6 +49,8 @@ public class Messages {
         person.getCcas().forEach(builder::append);
         builder.append("; Amount: ")
                 .append(person.getAmount());
+        builder.append("; Metadata: ")
+                .append(person.getMetadata());
         return builder.toString();
     }
 

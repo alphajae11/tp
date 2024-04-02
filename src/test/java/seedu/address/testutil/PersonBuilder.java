@@ -7,6 +7,7 @@ import seedu.address.model.amount.Amount;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Metadata;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -23,6 +24,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_AMOUNT = "0.0";
+    public static final String DEFAULT_METADATA = "I like peaches";
 
     private Name name;
     private Phone phone;
@@ -31,6 +33,7 @@ public class PersonBuilder {
     private Set<Role> roles;
     private Set<Cca> ccas;
     private Amount amount;
+    private Metadata metadata;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -43,6 +46,7 @@ public class PersonBuilder {
         roles = new HashSet<>();
         ccas = new HashSet<>();
         amount = new Amount(DEFAULT_AMOUNT);
+        metadata = new Metadata(DEFAULT_METADATA);
     }
 
     /**
@@ -56,6 +60,7 @@ public class PersonBuilder {
         roles = new HashSet<>(personToCopy.getRoles());
         ccas = new HashSet<>(personToCopy.getCcas());
         amount = personToCopy.getAmount();
+        metadata = personToCopy.getMetadata();
     }
 
     /**
@@ -114,8 +119,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Metadata} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMetadata(String metadata) {
+        this.metadata = new Metadata(metadata);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, roles, ccas, amount);
+        return new Person(name, phone, email, address, roles, ccas, amount, metadata);
     }
 
 }

@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_METADATA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -42,6 +43,7 @@ public class PersonUtil {
         person.getCcas().stream().forEach(
             c -> sb.append(PREFIX_CCA + c.ccaName + " ")
         );
+        sb.append(PREFIX_METADATA + person.getMetadata().metadata + " ");
         return sb.toString();
     }
 
@@ -72,6 +74,8 @@ public class PersonUtil {
                 roles.forEach(s -> sb.append(PREFIX_CCA).append(s.ccaName).append(" "));
             }
         }
+        descriptor.getMetadata().ifPresent(metadata -> sb.append(PREFIX_METADATA)
+                .append(metadata.metadata).append(" "));
         return sb.toString();
     }
 }

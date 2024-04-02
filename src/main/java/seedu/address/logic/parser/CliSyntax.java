@@ -13,4 +13,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_ROLE = new Prefix("r/");
     public static final Prefix PREFIX_CCA = new Prefix("c/");
     public static final Prefix PREFIX_AMOUNT = new Prefix("m/");
+    public static final Prefix PREFIX_METADATA = new Prefix("d/");
 }

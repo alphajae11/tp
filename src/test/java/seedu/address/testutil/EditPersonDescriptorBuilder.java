@@ -8,6 +8,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Metadata;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -39,6 +40,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setRoles(person.getRoles());
         descriptor.setCcas(person.getCcas());
+        descriptor.setMetadata(person.getMetadata());
     }
 
     /**
@@ -93,6 +95,17 @@ public class EditPersonDescriptorBuilder {
         Set<Cca> ccaSet = Stream.of(cca).map(Cca::new).collect(Collectors.toSet());
         descriptor.setCcas(ccaSet);
         return this;
+    }
+
+    /**
+     * Parses the {@code metadata} into a {@code Metadata} and
+     * set it to the {@code EditPersonDescriptorBuilder}
+     * @param metadata
+     * @return
+     */
+    public EditPersonDescriptor withMetadata(String metadata) {
+        descriptor.setMetadata(new Metadata(metadata));
+        return this.build();
     }
 
     public EditPersonDescriptor build() {

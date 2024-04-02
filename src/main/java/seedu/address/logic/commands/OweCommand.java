@@ -16,6 +16,7 @@ import seedu.address.model.amount.Amount;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Metadata;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -93,8 +94,9 @@ public class OweCommand extends Command {
         Set<Role> updatedRoles = personToOwe.getRoles();
         Set<Cca> updatedCcas = personToOwe.getCcas();
         Amount updatedAmount = new Amount(amount.toString());
+        Metadata updatedMetadata = personToOwe.getMetadata();
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRoles, updatedCcas,
-                updatedAmount);
+                updatedAmount, updatedMetadata);
     }
 
     @Override

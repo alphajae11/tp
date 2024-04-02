@@ -8,7 +8,8 @@
     "CCAs" : [ "NUS Cycling" ],
     "amount" : {
       "value" : "0.0"
-    }
+    },
+    "Metadata" : "I like to do leetcode everyday."
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -18,6 +19,7 @@
     "CCAs" : [ "NUS Cycling" ],
     "amount" : {
       "value" : "0.0"
-    }
+    },
+    "Metadata": "I like to eat apples."
   } ]
 }

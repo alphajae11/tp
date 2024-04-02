@@ -13,6 +13,7 @@ import seedu.address.model.amount.Amount;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Metadata;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.roles.Role;
@@ -164,5 +165,17 @@ public class ParserUtil {
             ccaSet.add(parseCca(ccaName));
         }
         return ccaSet;
+    }
+
+    /**
+     * Parses {@code Metadata metadata} into a {@code Metadata}.
+     */
+    public static Metadata parseMetadata(String metadata) throws ParseException {
+        requireNonNull(metadata);
+        String trimmedMetadata = metadata.trim();
+        if (!Metadata.isValidMetadata(trimmedMetadata)) {
+            throw new ParseException(Metadata.MESSAGE_CONSTRAINTS);
+        }
+        return new Metadata(trimmedMetadata);
     }
 }

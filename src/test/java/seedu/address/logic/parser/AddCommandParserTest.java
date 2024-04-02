@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ROLE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.METADATA_DESC_DEFAULT;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -55,7 +56,8 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + ROLE_DESC_FRIEND + CCA_DESC_DEFAULT, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + ROLE_DESC_FRIEND + CCA_DESC_DEFAULT + METADATA_DESC_DEFAULT,
+                new AddCommand(expectedPerson));
 
 
         // multiple roles - all accepted
@@ -63,7 +65,7 @@ public class AddCommandParserTest {
                 .withAmount("0.0").build();
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + ROLE_DESC_HUSBAND
-                        + ROLE_DESC_FRIEND + CCA_DESC_DEFAULT,
+                        + ROLE_DESC_FRIEND + CCA_DESC_DEFAULT + METADATA_DESC_DEFAULT,
                 new AddCommand(expectedPersonMultipleRoles));
     }
 
@@ -136,7 +138,7 @@ public class AddCommandParserTest {
         // zero roles
         Person expectedPerson = new PersonBuilder(AMY).withRoles().withAmount("0.0").build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-            + CCA_DESC_DEFAULT,
+            + CCA_DESC_DEFAULT + METADATA_DESC_DEFAULT,
             new AddCommand(expectedPerson));
     }
 

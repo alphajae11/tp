@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_METADATA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -26,6 +27,7 @@ import seedu.address.model.amount.Amount;
 import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Metadata;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -48,6 +50,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_ROLE + "ROLE] "
             + "[" + PREFIX_CCA + "CCA]...\n"
+            + "[" + PREFIX_METADATA + "Meta-data]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -105,10 +108,11 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Role> updatedRoles = editPersonDescriptor.getRoles().orElse(personToEdit.getRoles());
         Set<Cca> updatedCcas = editPersonDescriptor.getCcas().orElse(personToEdit.getCcas());
+        Metadata updatedMetadata = editPersonDescriptor.getMetadata().orElse(personToEdit.getMetadata());
         Amount updatedAmount = personToEdit.getAmount();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedRoles, updatedCcas, updatedAmount);
+                updatedRoles, updatedCcas, updatedAmount, updatedMetadata);
     }
 
     @Override
@@ -147,6 +151,8 @@ public class EditCommand extends Command {
         private Set<Role> roles;
         private Set<Cca> ccas;
 
+        private Metadata metadata;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -160,6 +166,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setRoles(toCopy.roles);
             setCcas(toCopy.ccas);
+            setMetadata(toCopy.metadata);
         }
 
         /**
@@ -235,6 +242,23 @@ public class EditCommand extends Command {
             return (ccas != null) ? Optional.of(Collections.unmodifiableSet(ccas)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code Metadata} to this object's {@code Metadata}.
+         * A defensive copy of {@code Metadata} is used internally.
+         */
+        public void setMetadata(Metadata metadata) {
+            this.metadata = metadata;
+        }
+
+        /**
+         * Returns an unmodifiable Metadata set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code Metadata} is null.
+         */
+        public Optional<Metadata> getMetadata() {
+            return Optional.ofNullable(metadata);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -263,6 +287,7 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("roles", roles)
                     .add("CCAs", ccas)
+                    .add("Metadata", metadata)
                     .toString();
         }
     }
