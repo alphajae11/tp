@@ -363,6 +363,29 @@ An example command for incrementing attendance is ``incatt n\John Doe``. Which m
 2. Edit the session detail according to the input.
 3. Update the attendance details of the person in the model.
 
+### \[Proposed\] Feedback to App Developers and CCA Excos
+
+After using the app (CCA Manager), there will be certain features that
+the users will not be too comfortable with.
+CCA Manager will allow these users to provide some direct feedback to the
+app developers so that they can immediately improve the features. The process is as follows.
+
+1. User click on the hyperlink that leads to the Google Form, CCA Manager App feedback form.
+2. User fill in the feedback form based on the issues that they have.
+3. User submit the feedback form (Google Form)
+4. App Developers receive the feedback
+   
+As CCA members participates in their CCA activities and events, they may want
+certain things to improve in their CCA. At the same time, the Exco members would
+want to know how their CCA management or ways of handling events/activities can improve.
+The App allows CCA members to give direct feedback to Exco members on how they think
+the CCA can be improved. The process is as follows.
+
+1. CCA members click on the hyperlink that leads to the Google form, CCA feedback form.
+2. CCA members fill in the feedback form based on the issues that they have.
+3. CCA members submit the feedback form (Google form)
+4. CCA Exco members receive the feedback
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

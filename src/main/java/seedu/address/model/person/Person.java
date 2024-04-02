@@ -48,6 +48,17 @@ public class Person {
         this.metadata = metadata;
     }
 
+    /**
+     * Replaces {@code Person.ccas} with another {@code Set<Cca>}
+     * by creating another Person with the new {@code Set<Cca>}.
+     * This is used in AddressBook to replace {@code Person.ccas}
+     * with objects in AddressBook.ccas.
+     * @return new person
+     */
+    public Person replaceCca(Set<Cca> newCcas) {
+        return new Person(name, phone, email, address, roles, newCcas, amount);
+    }
+
     public Name getName() {
         return name;
     }

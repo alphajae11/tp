@@ -33,6 +33,20 @@ public class Cca {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Checks if other is the same Cca by checking only the name.
+     * @param other
+     * @return
+     */
+    public boolean isSameCcaName(Cca other) {
+        requireNonNull(other);
+        if (other == this) {
+            return true;
+        }
+
+        return ccaName.equals(other.ccaName);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -48,6 +62,9 @@ public class Cca {
         return ccaName.equals(otherCca.ccaName);
     }
 
+    /**
+     * hashCode() should ONLY hash ccaName!
+     */
     @Override
     public int hashCode() {
         return ccaName.hashCode();

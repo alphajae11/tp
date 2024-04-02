@@ -3,10 +3,13 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.cca.Cca;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniqueCcaList;
 import seedu.address.model.person.UniquePersonList;
 
 /**
@@ -16,6 +19,7 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private final UniqueCcaList ccas;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +30,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
+        ccas = new UniqueCcaList();
     }
 
     public AddressBook() {}
@@ -45,7 +50,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
-        this.persons.setPersons(persons);
+        List<Person> newPersons = persons
+            .stream()
+            .map(p -> p.replaceCca(ccas.getUniqueCcas(p.getCcas())))
+            .collect(Collectors.toList());
+        this.persons.setPersons(newPersons);
+    }
+
+    public void setCcas(List<Cca> ccas) {
+        this.ccas.setCcas(ccas);
     }
 
     /**
@@ -53,7 +66,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
+        setCcas(newData.getCcaList());
         setPersons(newData.getPersonList());
     }
 
@@ -62,9 +75,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return persons.contains(person);
+    public boolean hasPerson(Person p) {
+        requireNonNull(p);
+        return persons.contains(p);
+    }
+
+    /**
+     * Returns true if a cca with the same name as {@code cca} exists in the address book.
+     */
+    public boolean hasCca(Cca c) {
+        requireNonNull(c);
+        return ccas.contains(c);
     }
 
     /**
@@ -72,7 +93,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      * The person must not already exist in the address book.
      */
     public void addPerson(Person p) {
-        persons.add(p);
+        Person newPerson = p
+            .replaceCca(ccas.getUniqueCcas(p.getCcas()));
+        persons.add(newPerson);
+    }
+
+    /**
+     * Adds a person to the address book.
+     * The person must not already exist in the address book.
+     */
+    public void addCca(Cca c) {
+        ccas.add(c);
     }
 
     /**
@@ -82,8 +113,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
-        persons.setPerson(target, editedPerson);
+        Person newEditedPerson = editedPerson
+            .replaceCca(ccas.getUniqueCcas(editedPerson.getCcas()));
+        persons.setPerson(target, newEditedPerson);
     }
 
     /**
@@ -104,6 +136,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Cca> getCcaList() {
+        return ccas.asUnmodifiableObservableList();
     }
 
     @Override
