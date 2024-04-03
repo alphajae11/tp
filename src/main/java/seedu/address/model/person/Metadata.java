@@ -13,10 +13,9 @@ public class Metadata {
             "Meta-data should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * A valid metadata is any string that does not contain a `/`.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[^/]+";
 
     public final String metadata;
 

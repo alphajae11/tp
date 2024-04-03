@@ -13,16 +13,14 @@ import seedu.address.testutil.Assert;
 public class MetadataTest {
     @Test
     public void isValidMetadata() {
-        // null name
+        // null metadata
         Assert.assertThrows(NullPointerException.class, () -> Metadata.isValidMetadata(null));
 
-        // invalid name
-        assertFalse(Metadata.isValidMetadata("")); // empty string
-        assertFalse(Metadata.isValidMetadata(" ")); // spaces only
-        assertFalse(Metadata.isValidMetadata("^")); // only non-alphanumeric characters
-        assertFalse(Metadata.isValidMetadata("peter*")); // contains non-alphanumeric characters
+        // invalid metadata
+        assertFalse(Metadata.isValidMetadata("/")); // contains slash
+        assertFalse(Metadata.isValidMetadata("peter/a")); // contains slash
 
-        // valid name
+        // valid metadata
         assertTrue(Metadata.isValidMetadata("I love to get drink every day"));
         assertTrue(Metadata.isValidMetadata("I sleep on the floor"));
         assertTrue(Metadata.isValidMetadata("I like to play soccer 2 times a week")); // alphanumeric characters
