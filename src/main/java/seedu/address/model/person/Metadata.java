@@ -7,6 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's meta-data in the CCA Manager
  * Guarantees: immutable; is valid as declared in {@link #isValidMetadata(String)}
  */
+
 public class Metadata {
     public static final String MESSAGE_CONSTRAINTS =
             "Meta-data should only contain alphanumeric characters and spaces, and it should not be blank";

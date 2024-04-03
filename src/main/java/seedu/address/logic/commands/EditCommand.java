@@ -49,7 +49,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_ROLE + "ROLE] "
-            + "[" + PREFIX_CCA + "CCA]...\n"
+            + "[" + PREFIX_CCA + "CCA] "
             + "[" + PREFIX_METADATA + "Meta-data]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -173,7 +173,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, ccas, roles);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, ccas, roles, metadata);
         }
 
         public void setName(Name name) {
@@ -275,7 +275,8 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(roles, otherEditPersonDescriptor.roles);
+                    && Objects.equals(roles, otherEditPersonDescriptor.roles)
+                    && Objects.equals(metadata, otherEditPersonDescriptor.metadata);
         }
 
         @Override

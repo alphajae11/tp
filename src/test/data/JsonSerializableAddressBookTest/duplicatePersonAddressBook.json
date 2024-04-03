@@ -10,7 +10,7 @@
     "amount" : {
       "value" : "0.0"
     },
-    "Metadata" : "I like to do leetcode everyday."
+    "metadata" : "I like to do leetcode everyday."
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -21,6 +21,6 @@
     "amount" : {
       "value" : "0.0"
     },
-    "Metadata": "I like to eat apples."
+    "metadata": "I like to eat apples."
   } ]
 }
