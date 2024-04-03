@@ -77,7 +77,6 @@ public class PersonUtil {
         sb.append(" ");
         descriptor.getMetadata().ifPresent(metadata -> sb.append(PREFIX_METADATA)
                 .append(metadata.metadata).append(" "));
-        System.err.printf("%s\n", sb.toString());
         return sb.toString();
     }
 }
