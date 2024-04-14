@@ -27,14 +27,16 @@ public class PhoneTest {
         // invalid phone numbers
         assertFalse(Phone.isValidPhone("")); // empty string
         assertFalse(Phone.isValidPhone(" ")); // spaces only
-        assertFalse(Phone.isValidPhone("9190137")); // less than 38 numbers
+        assertFalse(Phone.isValidPhone("9190137")); // less than 8 numbers
+        assertFalse(Phone.isValidPhone("12345678")); // Does not start with 8 or 9
         assertFalse(Phone.isValidPhone("phone")); // non-numeric
         assertFalse(Phone.isValidPhone("9011p041")); // alphabets within digits
         assertFalse(Phone.isValidPhone("9312 1534")); // spaces within digits
         assertFalse(Phone.isValidPhone("17803682394326478")); // More than 8 number
 
         // valid phone numbers
-        assertTrue(Phone.isValidPhone("93121534")); // exactly 8 numbers
+        assertTrue(Phone.isValidPhone("87779381")); // exactly 8 numbers starting with 8 or 9
+        assertTrue(Phone.isValidPhone("93121534")); // exactly 8 numbers starting with 8 or 9
     }
 
     @Test
