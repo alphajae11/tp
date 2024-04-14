@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.logic.parser.CliSyntax.NIL_FIELD;
 
+import java.util.HashSet;
+import java.util.Set;
 /**
  * Represents a CCA in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidCCAName(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidCcaName(String)}
  */
 public class Cca {
 
@@ -21,12 +23,26 @@ public class Cca {
     /**
      * Constructs a {@code Cca}.
      *
-     * @param CCAName A valid CCA name.
+     * @param ccaName A valid CCA name.
      */
     public Cca(String ccaName) {
         requireNonNull(ccaName);
         checkArgument(isValidCcaName(ccaName), MESSAGE_CONSTRAINTS);
         this.ccaName = ccaName;
+    }
+
+    /**
+     * Creates a set of Cca objects from a set of Cca names.
+     *
+     * @param ccaNames
+     * @return
+     */
+    public static Set<Cca> createCcaSet(String... ccaNames) {
+        Set<Cca> ccaSet = new HashSet<>();
+        for (String ccaName : ccaNames) {
+            ccaSet.add(new Cca(ccaName));
+        }
+        return ccaSet;
     }
 
     /**
@@ -37,7 +53,8 @@ public class Cca {
     }
 
     /**
-     * Checks if other is the same Cca by checking only the name.
+     * Checks if other is the same Cca by checking only the name.(Test only)
+     *
      * @param other
      * @return
      */

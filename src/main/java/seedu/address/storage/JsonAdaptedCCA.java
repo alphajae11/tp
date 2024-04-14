@@ -7,7 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.cca.Cca;
 
 /**
- * Jackson-friendly version of {@link CCA}.
+ * Jackson-friendly version of {@link Cca}.
  */
 class JsonAdaptedCca {
 

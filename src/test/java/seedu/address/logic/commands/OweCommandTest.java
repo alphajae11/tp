@@ -1,4 +1,4 @@
-// Part of the code is adpatated from original AB3 Code. All credits and thanks to the original
+// Part of the code is adapted from original AB3 Code. All credits and thanks to the original
 // CS2103T teaching team for this.
 package seedu.address.logic.commands;
 
@@ -17,6 +17,17 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.amount.Amount;
+import seedu.address.model.attendance.Attendance;
+import seedu.address.model.attendance.Sessions;
+import seedu.address.model.cca.Cca;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Metadata;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.roles.Role;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -42,6 +53,53 @@ public class OweCommandTest {
         assertEquals(expectedIndex, oweCommand.getIndex());
     }
 
+    // The testGetAmount() is adapted from ChatGPT. (Reason: Quick add a simple test)
+    @Test
+    public void testGetAmount() {
+        Amount expectedAmount = new Amount("100.0");
+        OweCommand oweCommand = new OweCommand(INDEX_FIRST_PERSON, expectedAmount);
+        assertEquals(expectedAmount, oweCommand.getAmount());
+    }
+    @Test
+    public void testCreateOwedPerson() {
+        // Arrange
+
+        Person personToOwe = new Person(new Name("temp"), new Phone("94351252"),
+                new Email("ewe@gmail.com"), new Address("secret"), Role.createRoleSet("member"),
+                Cca.createCcaSet(), new Amount("100.0"), new Attendance("3"), new Sessions("5"),
+                new Metadata("eating"));
+        Amount amount = new Amount("100.0");
+
+        // Act
+        Person owedPerson = OweCommand.createOwedPerson(personToOwe, amount);
+
+        // Assert
+        assertEquals(personToOwe.getName(), owedPerson.getName());
+        assertEquals(personToOwe.getPhone(), owedPerson.getPhone());
+        assertEquals(personToOwe.getEmail(), owedPerson.getEmail());
+        assertEquals(personToOwe.getAddress(), owedPerson.getAddress());
+        assertEquals(personToOwe.getRoles(), owedPerson.getRoles());
+        assertEquals(personToOwe.getCcas(), owedPerson.getCcas());
+        assertEquals(amount, owedPerson.getAmount());
+        assertEquals(personToOwe.getAtt(), owedPerson.getAtt());
+        assertEquals(personToOwe.getSess(), owedPerson.getSess());
+        assertEquals(personToOwe.getMetadata(), owedPerson.getMetadata());
+    }
+
+    @Test
+    public void testToString() {
+        // Arrange
+        Index index = Index.fromOneBased(5);
+        Amount amount = new Amount("100.00");
+        OweCommand oweCommand = new OweCommand(index, amount);
+
+        // Act
+        String result = oweCommand.toString();
+
+        // Assert
+        String expected = "OweCommand{ index: " + index + ", amount: " + amount + "}";
+        assertEquals(expected, result);
+    }
     @Test
     public void equals() {
         Amount amount = new Amount("10.00");

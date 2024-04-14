@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.logic.parser.CliSyntax.NIL_FIELD;
 
+import java.util.HashSet;
+import java.util.Set;
 /**
  * Represents a Role in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidRoleName(String)}
@@ -27,6 +29,21 @@ public class Role {
         requireNonNull(roleName);
         checkArgument(isValidRoleName(roleName), MESSAGE_CONSTRAINTS);
         this.roleName = roleName;
+    }
+
+    /**
+     * Creates a set of Role objects from a set of role names.(Test only)
+     *
+     * @param roleNames
+     * @return Set of role Objects
+     */
+    public static Set<Role> createRoleSet(String... roleNames) {
+        requireNonNull(roleNames);
+        Set<Role> roles = new HashSet<>();
+        for (String roleName : roleNames) {
+            roles.add(new Role(roleName));
+        }
+        return roles;
     }
 
     /**

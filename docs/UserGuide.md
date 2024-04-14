@@ -29,13 +29,13 @@ Welcome to CCA Manager's User Guide! CCA Manager is a **contact manager designed
 
 In this user guide, we'll walk you through the essential steps to harness the full potential of CCA Manager. Whether you're a CCA Executive Committee Member or simply a CCA participant, our guide will provide you with the knowledge and tools you need to make the most of our app.
 
-This user guide does not assume any prior experience with administrative tools or command interfaces and is accessible for beginners and self-contained. However, if you've used command interfaces such as those from Telegram, you might find this guide easier to follow. If you have further questions while reading this document or while using our app, visit our [FAQ](#faq). If your question isn't answered there, feel free to visit our [project repository](https://github.com/AY2324S2-CS2103T-W11-2/tp/issues) and raise an issue.
+This user guide does assumes some prior experience with administrative tools and command interfaces. Don't worry if you don't know these, we'll guide you along thew way! If you have further questions while reading this document or while using our app, visit our [FAQ](#faq). If your question isn't answered there, feel free to visit our [project repository](https://github.com/AY2324S2-CS2103T-W11-2/tp/issues) and raise an issue.
 
 This user guide is split into 4 parts:
 1. An introduction to what CCA Manager offers,
 2. A section to set up our app,
 3. Beginner-friendly tutorials that introduce CCA Manager through a practical use case, and
-4. A comprehensive reference that explains all of CCA Manager's concepts and features. Feel free to navigate this guide via the sidebar on the right.
+4. A comprehensive reference that explains all of CCA Manager's concepts and features.
 
 
 <!-- * Table of Contents -->
@@ -120,10 +120,10 @@ When you first boot up the app, the app will contain some example contacts for y
 To run a command, type the command in the **Command Box** and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.
 
 Here are some other example commands you can try:
-   * `list`: [Lists all contacts.](#listing-all-persons--list)
-   * `delete 3`: [Deletes the 3rd contact shown in the currently displayed list.](#deleting-a-person--delete)
-   * `filter NUS Cycling`: [Filter contacts by CCA.](#filter-by-cca)
-   * `exit`: [Exits the app.](#exiting-the-program--exit)
+   * `list`: [Lists all contacts.](#listing-all-persons-list)
+   * `delete 3`: [Deletes the 3rd contact shown in the currently displayed list.](#deleting-a-person-delete)
+   * `filter c/NUS Cycling`: [Filter contacts by CCA.](#filter-by-cca-and-roles-filter)
+   * `exit`: [Exits the app.](#exiting-the-program-exit)
    <!--* `add`: [Adds a contact/CCA group to the CCA Manager](#add-contacts-with-cca-labels)-->
    <!--* `edit`: [Edit details of the contacts.](#edit-the-details-of-your-contacts)-->
 
@@ -175,6 +175,8 @@ Archiving data files [coming in v2.0]
 
 Shows a message explaining how to access the help page.
 
+##### Command Format:
+
 $$
 \large
 \overbrace{\texttt{\colorbox{lightgrey}{help}}}
@@ -203,7 +205,21 @@ A box appears with a button `Copy URL`. Clicking it will allow you to paste the 
 
 Exits the program.
 
-Format: `exit`
+##### Command Format:
+
+$$
+\large
+\overbrace{\texttt{\colorbox{lightgrey}{exit}}}
+    ^{\text{\colorbox{lightgrey}{Action}}}
+$$
+
+##### Examples:
+
+`exit`
+
+##### Outcome:
+
+Nil.
 
 ### Displaying Contacts
 
@@ -242,24 +258,110 @@ Everybody added to CCA Manager is listed in the **Results Box**.
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+##### Command Format:
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+$$
+\large
+\begin{aligned}
+\overbrace{\texttt{\colorbox{lightgrey}{find}}}
+    ^{\text{\colorbox{lightgrey}{Action}}}
+\quad &
+    \underset{
+        \substack{
+            \text{\color{red}{Must have at least one}} \\
+            \text{\color{red}{word}}
+        }
+    }{
+        \overbrace{
+            \texttt{\fcolorbox{tomato}{transparent}{\color{green}{alex}} 
+            \quad 
+            \fcolorbox{tomato}{transparent}{\color{green}{lee}}}}
+            ^{\substack{
+                \text{\colorbox{gold}{Word in name}} \\
+                \text{\colorbox{gold}{of a person in}} \\
+                \text{\colorbox{gold}{CCA Manager}}
+            }}
+    }
+\end{aligned}
+$$
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+<box type="info" seamless>
+
+* The words supplied to `find` are case-insensitive.
+    * If you have an `Alex Yeoh` in the app, performing `find alex` will match `Alex Yeoh`.
+* The order of the words does not matter.
+    * `find alex lee` is the same as `find lee alex`.
+* Only full words will be matched.
+    * Performing `find al` will not match `Alex Yeoh`
+* If a person's name contains at least one of the words supplied to `find`, the person will be matched.
+</box>
+
+##### Examples:
+
+* `find Alex`
+* `find Alex Yu`
+
+##### Outcome:
+
+The output for `find Alex Yu` is:
+<center>
+<img width="700px" src="images/UG-Basics/find-output-1.png">
+</center>
+
+
+##### Possible Failures:
+
+If you do not enter a name to find, the command will fail.
 
 #### Filter by CCA and roles: `filter`
 Filter the current list with CCA and roles
 
-Format: filter c/CCA r/ROLES
+
+##### Command Format
+
+$$
+\large
+\overbrace{\texttt{\colorbox{lightgrey}{filter}}}
+    ^{\text{\colorbox{lightgrey}{Action}}}
+\quad
+\underset{
+    \substack{
+        \text{\color{red}{Optional}} \\
+        \text{\color{red}{can have multiple}}
+    }
+}{
+    \overbrace{\texttt{\colorbox{lavender}{r/}\color{green}{Treasurer}}}
+        ^{\text{\colorbox{lavender}{Role(s)}}}
+}
+\quad
+\underset{
+    \substack{
+        \text{\color{red}{Optional}} \\
+        \text{\color{red}{can have multiple}}
+    }
+}{
+    \overbrace{\texttt{\colorbox{plum}{c/}\color{green}{NUS Cycling}}}
+        ^{\text{\colorbox{plum}{CCA(s)}}}
+}
+$$
+
+##### Examples:
+
+* `filter c/NUS Cycling`
+* `filter c/NUS Cycling r/classmates`
+* `filter c/NUS Cycling r/classmates r/colleagues`
+
+##### Outcome:
+
+For `filter c/NUS Cycling r/classmates r/colleagues`:
+<center>
+<img width="700px" src="images/UG-Basics/filter-output-1.png">
+</center>
+
+##### Possible Failures:
+
+Not entering a CCA will cause the command to fail.
 
 ### Editing Contacts
 
@@ -491,24 +593,204 @@ The 2nd person on the list, Bernice Yu, has her CCAs updated from `NUS Cycling` 
 
 ##### Possible Failures:
 
-TODO
+If the entry in the list is not present, the command will fail.
 
 #### Assigning roles to person: `assign`
 
-#### Track a person owing money: `owe`
-Set up amount of money each person owes
+##### Command Format:
 
+$$
+\large
+\overbrace{\texttt{\colorbox{lightgrey}{assign}}}
+    ^{\text{\colorbox{lightgrey}{Action}}}
+\quad
+\overbrace{\texttt{\fcolorbox{tomato}{transparent}{\color{green}{1}}}}
+    ^{\substack{
+        \text{\colorbox{gold}{Index of person}} \\
+        \text{\colorbox{gold}{in \textbf{Result Box}}}
+    }}
+\quad
+\underset{
+    \substack{
+        \text{\color{red}{must have at least one}} \\
+        \text{\color{red}{can have multiple}}
+    }
+}{
+    \overbrace{\texttt{\colorbox{lavender}{r/}\color{green}{Treasurer}}}
+        ^{\text{\colorbox{lavender}{Role(s)}}}
+}
+$$
+
+##### Examples:
+
+* (Assuming you have a list of people displayed) `assign 1 r/Treasurer`
+
+##### Outcome:
+
+For `assign 1 r/Treasurer`
+<center>
+<img src="images/UG-Basics/assign-output-1.png" width=700>
+</center>
+
+##### Possible Failures:
+
+If the entry does not exist, the ocmmand will fail.
+
+#### Track a person owing money: `owe`
+
+Set up the amount of money a person owes.
+
+##### Command Format:
+
+$$
+\large
+\overbrace{\texttt{\colorbox{lightgrey}{owe}}}
+    ^{\text{\colorbox{lightgrey}{Action}}}
+\quad
+\overbrace{\texttt{\fcolorbox{tomato}{transparent}{\color{green}{1}}}}
+    ^{\substack{
+        \text{\colorbox{gold}{Index of person}} \\
+        \text{\colorbox{gold}{in \textbf{Result Box}}}
+    }}
+\quad
+\overbrace{\texttt{\colorbox{aquamarine}{m/}\color{green}{10.00}}}
+    ^{\text{\colorbox{aquamarine}{Amount owed}}}
+$$
+
+##### Examples:
+
+* (assuming a list of persons is currently shown) `owe 1 m/10.00`
+
+##### Outcome:
+
+For `owe 1 m/10.00`:
+<center>
+<img src="images/UG-Basics/owe-output-1.png" width=700>
+</center>
+
+##### Possible Failures:
+
+If the entry does not exist, the command will fail. The command will also reject
+non-numeric amounts of money, or money that exceeds 2 decimal places.
 
 #### Charge a person with money: `charge`
-Charge a person with an amount of money by CCA and role
+Charge a person with an amount of money by CCA and optionally, by role.
 
+##### Command Format:
+
+$$
+\large
+\overbrace{\texttt{\colorbox{lightgrey}{charge}}}
+    ^{\text{\colorbox{lightgrey}{Action}}}
+\quad
+\overbrace{\texttt{\colorbox{aquamarine}{m/}\color{green}{10.00}}}
+    ^{\text{\colorbox{aquamarine}{Amount to charge}}}
+\quad
+\underset{
+    \substack{
+        \text{\color{red}{must have at least one}} \\
+        \text{\color{red}{can have multiple}}
+    }
+}{
+    \overbrace{\texttt{\colorbox{plum}{c/}\color{green}{NUS Cycling}}}
+        ^{\text{\colorbox{plum}{CCA(s)}}}
+}
+\quad
+\underset{
+        \substack{
+            \text{\color{red}{Optional}} \\
+            \text{\color{red}{can have multiple}}
+        }
+    }{
+        \overbrace{\texttt{\colorbox{lavender}{r/}\color{green}{Treasurer}}}
+            ^{\text{\colorbox{lavender}{Role(s)}}}
+    }
+$$
+
+##### Examples:
+
+* Charges all members in NUS Cycling with the role of "Treasurer":
+  `charge m/10.00 c/NUS Cycling r/Treasurer`
+
+##### Outcome:
+
+For `charge m/10.00 c/NUS Cycling r/Treasurer`:
+<center>
+<img src="images/UG-Basics/charge-output-1.png" width=700>
+</center>
+
+##### Possible Failures:
+
+If the amount entered is non-numeric, the
+command will fail. The command also fails if nobody was charged.
+This usually means the CCA or role was invalid.
 
 #### Track attendance: `setatt`
+
+
+##### Command Format:
+
+$$
+\large
+\overbrace{\texttt{\colorbox{lightgrey}{setatt}}}
+    ^{\text{\colorbox{lightgrey}{Action}}}
+\quad
+\overbrace{\texttt{\fcolorbox{tomato}{transparent}{\color{green}{1}}}}
+    ^{\substack{
+        \text{\colorbox{gold}{Index of person}} \\
+        \text{\colorbox{gold}{in \textbf{Result Box}}}
+    }}
+\quad
+\overbrace{\texttt{\colorbox{aquamarine}{att/}\color{green}{3}}}
+    ^{\substack{
+        \text{\colorbox{aquamarine}{Number of attended}} \\
+        \text{\colorbox{aquamarine}{sessions}
+    }}}
+\quad
+\overbrace{\texttt{\colorbox{aquamarine}{s/}\color{green}{10}}}
+    ^{\text{\colorbox{aquamarine}{Number of sessions}}}
+$$
+
+
+##### Examples:
+
+TODO
+
+##### Outcome:
+
+TODO
+
+##### Possible Failures:
+
+TODO
 
 Set attendance for each person
 
 #### Delete a CCA: `cca_delete`
 Delete a current existing CCA
+
+##### Command Format:
+
+$$
+\large
+\overbrace{\texttt{\colorbox{lightgrey}{cca\_delete}}}
+    ^{\text{\colorbox{lightgrey}{Action}}}
+\quad
+\overbrace{\texttt{\colorbox{plum}{c/}\color{green}{NUS Cycling}}}
+        ^{\text{\colorbox{plum}{CCA to delete}}}
+$$
+
+##### Examples:
+
+TODO
+
+##### Outcome:
+
+TODO
+
+##### Possible Failures:
+
+TODO
 
 ### Deleting Contacts
 
@@ -516,6 +798,33 @@ Delete a current existing CCA
 
 Deletes the specified person from the CCA Manager.
 
+##### Command Format:
+
+$$
+\large
+\overbrace{\texttt{\colorbox{lightgrey}{delete}}}
+    ^{\text{\colorbox{lightgrey}{Action}}}
+\quad
+\overbrace{\texttt{\fcolorbox{tomato}{transparent}{\color{green}{1}}}}
+    ^{\substack{
+        \text{\colorbox{gold}{Index of person}} \\
+        \text{\colorbox{gold}{in \textbf{Result Box}}}
+    }}
+$$
+
+##### Examples:
+
+TODO
+
+##### Outcome:
+
+TODO
+
+##### Possible Failures:
+
+TODO
+
+<!--
 Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
@@ -525,12 +834,31 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the CCA Manager.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+-->
 
 #### Clearing all entries: `clear`
 
 Clears all entries from the CCA Manager.
 
-Format: `clear`
+##### Command Format:
+
+$$
+\large
+\overbrace{\texttt{\colorbox{lightgrey}{clear}}}
+    ^{\text{\colorbox{lightgrey}{Action}}}
+$$
+
+##### Examples:
+
+TODO
+
+##### Outcome:
+
+TODO
+
+##### Possible Failures:
+
+TODO
 
 ### Storage
 
