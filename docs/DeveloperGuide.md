@@ -15,6 +15,8 @@
 
 _{ list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well }_
 
+1. CS2103T AB3 Source Code
+2. https://uibakery.io/regex-library/phone-number-java - Regarding Phone Validation Java Regex
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**

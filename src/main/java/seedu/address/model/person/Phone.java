@@ -12,9 +12,12 @@ public class Phone {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be 8 digits long "
-                    + "according to Singapore mobile number format which starts with"
+                    + "according to Singapore mobile number format which starts with "
                     + "8 or 9.";
-    public static final String VALIDATION_REGEX = "^[89]\\d{7}";
+
+    //Solution below for VALIDATION_REGEX was inspired by https://uibakery.io/regex-library/phone-number-java
+    // and AB3 source code
+    public static final String VALIDATION_REGEX = "^[8-9]\\d{7}";
     public final String value;
 
     /**
